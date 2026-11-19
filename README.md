@@ -60,13 +60,21 @@ previous day's news as its day's news loses on faithfulness no matter how good i
 ## Running it
 
 The grader runs `main.py` with no network, one CPU, sixty seconds and only Python's
-standard library. It copies the committed image:
+standard library. It writes the committed image to `/output/entry.png`, or to
+`MAKEFUN_OUTPUT_DIR` when that is set, creating the directory if it is missing:
 
 ```sh
 MAKEFUN_OUTPUT_DIR=out python3 main.py    # writes out/entry.png
 ```
 
 Two runs write identical bytes, which the grader checks.
+
+`main.py` also checks the entry against the gate's own limits and exits non-zero rather
+than letting a broken file through: the bytes must be a PNG or a JPEG by their first
+bytes, at most 1 MiB, and no side over 1024 pixels, with the width and height parsed
+here out of the PNG `IHDR` chunk or the JPEG frame header — no Pillow at grading time.
+It then confirms the written file exists and is the size it should be. So a corrupted
+or oversized `entry.png` fails loudly instead of shipping quietly.
 
 `gen.py` is the drawing code that produced `entry.png`; it needs Pillow and is not
 part of what the grader runs. Retune a story in `data.py` and re-render with:
@@ -88,7 +96,8 @@ regression fails loudly instead of shipping quietly.
 | Right margin at the widest ink | 25 px |
 | Two runs byte-identical | `sha256 a7fad06b…` |
 | Size, dimensions | 168,742 bytes, 1024×1024 |
-| `main.py` imports | `os`, `shutil` only |
+| `main.py` imports | `os`, `struct`, `sys` only |
+| `main.py` rejects a corrupt or oversized `entry.png` | exit 1 on all four cases tried |
 
 ## Licence
 

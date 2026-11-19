@@ -12,7 +12,9 @@ daily picture-of-the-day contest for 19 November 2026.
 A designed information page, not a wall of text: twelve illustrated panels for the
 day's biggest stories, each with a region and field label, a headline, a deck and a
 factual sentence; a "by the numbers" strip; and the remaining forty stories as a
-three-column index. Fifty-two stories in all, across seven regions.
+three-column index. Fifty-two stories in all, across seven regions and twenty fields. The table below gives
+every region and the eight fields that carry three or more stories; the page's own footer
+prints all twenty.
 
 | Region | Stories | | Field | Stories |
 |---|---|---|---|---|
@@ -21,8 +23,9 @@ three-column index. Fifty-two stories in all, across seven regions.
 | Europe | 9 | | Diplomacy | 5 |
 | Mideast | 9 | | Politics | 5 |
 | Americas | 6 | | Law | 3 |
-| Oceania | 3 | | Economy | 3 |
+| Oceania | 3 | | Society | 3 |
 | World | 3 | | Disaster | 3 |
+| | | | Economy | 3 |
 
 The census is counted from the story data at render time, so the numbers printed on
 the page cannot disagree with the stories printed on the page.
@@ -35,8 +38,8 @@ time zone. The lead stories:
 - **Shenzhen:** Xi Jinping, Donald Trump and Vladimir Putin held the first trilateral
   meeting of the three, with a joint declaration on nuclear risk, oil and UN reform,
   and no breakthrough on Ukraine.
-- **The Hague:** the ICJ held Myanmar responsible for genocide against the Rohingya,
-  the first such ruling against a state.
+- **The Hague:** the ICJ found Myanmar committed genocide against the Rohingya, nine
+  judges to six, the first such finding against a state.
 - **Berlin:** around forty partners met in the Coalition of the Willing, with Trump's
   envoys present, to shape the next phase on Russia's war.
 - **Kerch Bridge:** Ukraine's third strike on the crossing in four days halted rail
@@ -83,8 +86,8 @@ regression fails loudly instead of shipping quietly.
 | Date readable at 300 px (tesseract OCR) | `THURSDAY 19 NOVEMBER 2026` |
 | Bottom clearance under the last line | 15 px |
 | Right margin at the widest ink | 25 px |
-| Two runs byte-identical | `sha256 c71cb2fc…` |
-| Size, dimensions | 169,063 bytes, 1024×1024 |
+| Two runs byte-identical | `sha256 a7fad06b…` |
+| Size, dimensions | 168,742 bytes, 1024×1024 |
 | `main.py` imports | `os`, `shutil` only |
 
 ## Licence

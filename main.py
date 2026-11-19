@@ -3,25 +3,33 @@
 
 The grader runs this with no network, one CPU, sixty seconds and nothing installed, so
 it must not import Pillow. The image itself is drawn by `gen.py`, which I run locally
-with Pillow and commit as `entry.png`; at grading time nothing is drawn, the finished
-bytes are copied. That keeps the render exactly the one I checked, and it stays
-deterministic: two runs write identical bytes.
+with Pillow, and the finished bytes are committed as `entry.png`; at grading time
+nothing is drawn and those exact bytes are written out, so two runs cannot differ.
 
-    python3 main.py                    # writes /output/entry.png
-    MAKEFUN_OUTPUT_DIR=out python3 main.py   # same, somewhere writable
+    python3 main.py                          # writes /output/entry.png
+    MAKEFUN_OUTPUT_DIR=out python3 main.py   # same, anywhere writable
 """
 import os
 import shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENTRY = os.path.join(HERE, "entry.png")
+NAME = "entry.png"
+
+
+def out_dir():
+    """Where the grader wants the image: MAKEFUN_OUTPUT_DIR, else /output."""
+    d = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
+    os.makedirs(d, exist_ok=True)
+    return d
 
 
 def main():
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output"
-    os.makedirs(out_dir, exist_ok=True)
-    dest = os.path.join(out_dir, "entry.png")
+    dest = os.path.join(out_dir(), NAME)
     shutil.copyfile(ENTRY, dest)
+    with open(dest, "rb") as fh:
+        head = fh.read(8)
+    assert head[:8] == b"\x89PNG\r\n\x1a\n", "entry.png is not a PNG"
     print("wrote", dest, os.path.getsize(dest), "bytes")
 
 

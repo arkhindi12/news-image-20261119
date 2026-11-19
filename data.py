@@ -20,11 +20,11 @@ HEROES = [
      "Guardian 19 Nov 14:32Z; CNBC 19 Nov 06:27Z; AFP/Anadolu 19 Nov; AP 19 Nov"),
 
     ("ASIA", "LAW",
-     "World Court: Myanmar committed genocide",
-     "The first such ruling against any state",
-     "The ICJ held Myanmar responsible for genocide against the Rohingya in the 2017 "
-     "clearance operations, and ordered it to stop, punish and make reparations. The "
-     "court estimated 10,000 were killed.",
+     "Court finds Myanmar committed genocide",
+     "Nine of fifteen judges; the first against a state",
+     "The ICJ's president said a majority found Myanmar 'has committed genocide against "
+     "the Rohingya' in the 2017 clearance operations, and ordered it to stop, punish and "
+     "pay reparations. The court estimated 10,000 were killed.",
      "OCHRE", "court",
      "UN News 19 Nov; ICJ press release 2026/30, 19 Nov; AP 19 Nov 20:05Z; BBC 19 Nov"),
 
